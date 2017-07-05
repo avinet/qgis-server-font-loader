@@ -1,0 +1,20 @@
+[general]
+name=QGIS Font Loader
+qgisMinimumVersion=2.5
+qgisMaximumVersion=2.99
+tracker=https://github.com/avinet/qgis-server-font-loader
+homepage=https://github.com/boundlessgeo/qgis-server-font-loader
+repository=https://github.com/boundlessgeo/qgis-server-font-loader
+
+description=Loads TTF font files present in C:\fonts.
+version=version 1.1
+author=Jørgen Nystad (Avinet)
+email=jn@avinet.no
+; if True it's a server plugin
+server=True
+
+category=server
+
+experimental=True
+
+about=Font loader plugin to add fonts used in e.g. FontMarker.
