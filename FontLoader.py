@@ -1,11 +1,15 @@
 from qgis.server import *
 from qgis.core import *
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import QFontDatabase
+from PyQt5.QtCore import *
+from PyQt5.QtGui import QFontDatabase
 
 # Path to extra fonts. All *.ttf files will be loaded.
-fontDir = "C:/fonts"
+import os
+fontDir = os.environ.get('QT_QPA_FONTDIR', os.path.join(os.environ.get('windir',r'C:\Windows'), 'Fonts'))
+
+def Bytes(string):
+    return bytes(string, 'utf8')
 
 # Adds SERVICE=FONTLOADER support for listing which fonts are loaded by this plugin
 class FontLoader(QgsServerFilter):
@@ -16,18 +20,17 @@ class FontLoader(QgsServerFilter):
         request = self.serverInterface().requestHandler()
         params = request.parameterMap()
         if params.get('SERVICE', '').upper() == 'FONTLOADER':
-            request.clearHeaders()
-            request.setHeader('Content-type', 'text/plain')
+            request.clear()
+            request.setResponseHeader('Content-type', 'text/plain')
             request.clearBody()
 
-            request.appendBody('Fonts to be imported:\n')
+            request.appendBody(Bytes('Fonts imported from: {}\n'.format(fontDir)))
             it = QDirIterator(fontDir)
             while (it.hasNext()):
                 path = it.next()
                 if path.endswith('.ttf'):
-                    request.appendBody(it.fileName())
-                    request.appendBody("\n")
-            request.appendBody('END\n')
+                    request.appendBody(Bytes(it.fileName()+'\n'))
+            request.appendBody(Bytes('END\n'))
 
 class FontLoaderServer:
     def __init__(self, serverIface):

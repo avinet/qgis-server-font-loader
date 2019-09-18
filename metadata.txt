@@ -1,15 +1,15 @@
 [general]
-name=QGIS Font Loader
-qgisMinimumVersion=2.5
-qgisMaximumVersion=2.99
-tracker=https://github.com/avinet/qgis-server-font-loader
-homepage=https://github.com/boundlessgeo/qgis-server-font-loader
-repository=https://github.com/boundlessgeo/qgis-server-font-loader
+name=QGIS Server Font Loader
+qgisMinimumVersion=3.0
+qgisMaximumVersion=3.99
+tracker=https://github.com/dx1983/qgis-server-font-loader
+homepage=https://github.com/dx1983/qgis-server-font-loader
+repository=https://github.com/dx1983/qgis-server-font-loader
 
-description=Loads TTF font files present in C:\fonts.
-version=version 1.1
-author=Jørgen Nystad (Avinet)
-email=jn@avinet.no
+description=Loads TTF font files present in %windir%\fonts or env QT_QPA_FONTDIR.
+version=version 2.0
+author=Dong Xiang
+email=dongxiang1983@gmail.com
 ; if True it's a server plugin
 server=True
 
